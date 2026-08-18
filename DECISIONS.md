@@ -1,27 +1,35 @@
-# Project Decisions Log
+# Engineering Decisions
 
-## Decision 1: Product Concept (Minimalist Markdown Writing App)
-- **Options considered**: Generic SaaS task manager, API logging tool, Minimalist markdown writing app ("Zenith").
-- **Chosen**: Minimalist markdown writing app ("Zenith").
-- **Why**: It allows for a stunning, typography-focused visual representation of the product without relying on any fake data, dashboards, or fabricated user metrics. This aligns perfectly with the constraint of honesty over invented polish.
-- **Rejected because**: Task managers and API tools typically require complex, fabricated data and dashboards to look "premium", which violates the core grading factor regarding fake content.
+## 1. Why this approach over the obvious alternative?
 
-## Decision 2: ONE Micro-interaction (Mouse-Following Glow)
-- **Options considered**: Hover effects on standard buttons, scroll-linked parallax, a mouse-following subtle glowing border on the product preview.
-- **Chosen**: A subtle glowing border effect on the product preview card that follows the mouse cursor.
-- **Why**: It feels modern and premium, draws direct attention to the product itself, and serves as exactly one purposeful, engaging interaction rather than a mess of multiple competing animations.
-- **Rejected because**: Basic button hover effects are too simple to impress. Scroll-linked animations can be janky, hard to perfect in a time-boxed assessment, and risk negatively impacting the scrolling experience.
+**Vite + React (No React Router)**
+The assignment called for a "premium home page". The obvious alternative for a modern React project would be Next.js, but since this is specifically a single-page frontend challenge, a full-stack framework adds unnecessary complexity, longer build times, and a heavier bundle size. I chose Vite for fast HMR and zero configuration, keeping the app strictly to a single page with smooth scroll anchors instead of client-side routing.
 
-## Decision 3: Tech Stack & Styling (Vite + React + Vanilla CSS)
-- **Options considered**: Next.js + TailwindCSS, Vite (React) + Vanilla CSS.
-- **Chosen**: Vite (React) + Vanilla CSS.
-- **Why**: Vite offers a fast, modern React development experience perfect for a single-page build. Vanilla CSS provides explicit, raw control over custom properties (crucial for the dynamic X/Y coordinates in the glow micro-interaction) without the abstraction overhead of Tailwind.
-- **Rejected because**: Next.js is architectural overkill for a single static landing page. 
+**Tailwind CSS over CSS-in-JS**
+I used Tailwind CSS to rapidly style components using a utility-first approach while maintaining a centralized design token system (colors, typography). The alternative (styled-components or Emotion) adds runtime overhead and larger bundle sizes, which contradicts the goal of a fast, performant landing page.
 
----
+**Selective React Bits Usage**
+The obvious temptation with an animation library is to use it everywhere. I intentionally limited React Bits to exactly three components:
+1. `ShinyText` (subtle hero badge attention)
+2. `SpotlightCard` (premium hover interaction on feature cards)
+3. `ScrollReveal` (tasteful section entrances)
+This restraint ensures the animations enhance the *product* rather than distract from it. I customized their CSS to match our color scheme and completely removed their default demo bloat. 
 
-## AI Assumptions & Areas for Review
-*Note for the human reviewer claiming ownership of this codebase:*
-1. **The Glow Micro-interaction CSS (`src/index.css`)**: The `-webkit-mask` composite trick used to create the gradient border is powerful but can be finicky across different browser engines (specifically Safari vs Chrome). I assume it will gracefully degrade, but you should double-check the border rendering on Safari.
-2. **Responsive Breakpoints**: I made an assumption that a single breakpoint at `768px` is sufficient to transition from the 390px mobile view to the 1440px desktop view. If the design breaks awkwardly around tablet sizes (e.g., `1024px`), you may need to add an intermediate media query.
-3. **Accessibility**: While I used basic semantic HTML (`<nav>`, `<main>`, `<section>`), I did not thoroughly add `aria-labels` to the mock sidebar SVG icons since they are purely decorative for this visual demo. You might want to review if strict accessibility grading applies.
+**Custom Product Simulation over React Bits MagicBento/Terminal**
+The most critical part of the page is the product simulation (the "Analyze" interaction). I built a custom state machine (`idle` → `analyzing` → `result`) because the UI needs to look like a believable developer tool, not a flashy marketing widget. The analysis returns pre-written mock data (a realistic JavaScript `TypeError`) with plain monospace text instead of fake CSS syntax highlighting. This choice is honest—pretending to parse syntax without a real library is a bad engineering practice.
+
+## 2. What trade-offs did I make because of the time limit?
+
+*   **No real syntax highlighting:** Integrating a robust syntax highlighter like Shiki or Prism.js would provide a slightly better visual experience in the code block, but it adds significant bundle size and setup time. I opted for clean, plain monospace text which is functionally correct and honest for a prototype.
+*   **No backend / Fake AI:** The "Analyze" button uses a 2-second `setTimeout` to reveal mock data. Building a real API connection (even to a dummy endpoint) would consume time better spent on responsive design and accessibility.
+*   **No Dark/Light theme toggle:** While typical for developer tools, building a robust theme system takes time to get contrast ratios right for both modes. I forced a dark mode since it fits the "premium AI developer tool" aesthetic perfectly.
+
+## 3. Where did I use AI tools, and what did I personally verify or change?
+
+*   **AI Generation:** I used AI (DevPilot/Claude) to scaffold the initial React component structure, generate the realistic JavaScript mock error data, and write the boilerplate Tailwind classes based on my design tokens.
+*   **Personal Verification & Changes:** 
+    *   I manually structured the component architecture (flattening it to one-component-per-section).
+    *   I completely overhauled the accessibility. AI tends to write `<div>` soup. I changed elements to semantic `<header>`, `<nav>`, `<main>`, `<section>`, and `<article>`. I added `aria-live` to the analysis panel, `aria-label` to icon buttons, and forced `:focus-visible` outlines on all interactive elements.
+    *   I manually tested responsive breakpoints at 390px, 768px, and 1440px to ensure the layout didn't break.
+    *   I explicitly rejected the AI's initial suggestion to use CSS to fake syntax highlighting, opting for a clean `<pre><code>` block instead.
+    *   I integrated `prefers-reduced-motion` overrides into the CSS, ensuring the site respects system accessibility settings.

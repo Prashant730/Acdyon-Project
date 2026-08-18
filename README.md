@@ -1,16 +1,42 @@
-# React + Vite
+# DevPilot AI
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+DevPilot AI is a premium landing page prototype for an AI-powered developer productivity tool. It features a responsive design, accessible components, and an interactive frontend simulation of the core product experience.
 
-Currently, two official plugins are available:
+Built for the Acdyon Technologies Frontend Challenge.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- 🎨 **Premium Dark Mode UI**: Built with Tailwind CSS and carefully selected color tokens.
+- ⚡ **Interactive Product Simulation**: A working frontend demo of the "Analyze Code" workflow using a simple React state machine.
+- ✨ **Tasteful Animations**: Selective use of Framer Motion and React Bits (`ShinyText`, `SpotlightCard`, `ScrollReveal`) for meaningful micro-interactions.
+- 📱 **Fully Responsive**: Pixel-perfect layouts for mobile (390px), tablet (768px), and desktop (1440px).
+- ♿ **Accessible**: Semantic HTML, full keyboard navigation, `aria-live` regions, and `prefers-reduced-motion` support.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the Oxlint configuration
+- **Framework**: React 18
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS v3
+- **Animations**: Framer Motion
+- **UI Components**: React Bits (Customized)
+- **Fonts**: Inter (UI), JetBrains Mono (Code)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Setup Instructions
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Build for production:
+   ```bash
+   npm run build
+   ```
+
+## Key Decisions
+
+Please read the `DECISIONS.md` file for a detailed explanation of the architecture, engineering trade-offs, and design choices made during development.
