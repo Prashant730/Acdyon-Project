@@ -5,6 +5,7 @@ import AnalysisPanel from './AnalysisPanel';
 import { defaultErrorInput, analysisResult } from '../data/mockData';
 import ScrollReveal from '../reactbits/ScrollReveal';
 import SpotlightCard from '../reactbits/SpotlightCard';
+import AnimatedContent from '../reactbits/AnimatedContent';
 
 const ProductShowcase = () => {
   const [input, setInput] = useState(defaultErrorInput);
@@ -126,10 +127,19 @@ const ProductShowcase = () => {
               </div>
 
               {/* Right Pane (Analysis) */}
-              <div className="flex flex-1 flex-col bg-brand-surface/30">
+              <div className="flex flex-1 flex-col bg-brand-surface/30 relative">
                 <AnimatePresence mode="wait">
                   {hasResult ? (
-                    <AnalysisPanel key="result" result={analysisResult} />
+                    <AnimatedContent
+                      key="result"
+                      distance={50}
+                      direction="horizontal"
+                      reverse={true}
+                      duration={0.6}
+                      className="flex-1 h-full w-full absolute inset-0"
+                    >
+                      <AnalysisPanel result={analysisResult} />
+                    </AnimatedContent>
                   ) : isAnalyzing ? (
                     <motion.div
                       key="analyzing"

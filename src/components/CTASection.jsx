@@ -1,4 +1,5 @@
 import ScrollReveal from '../reactbits/ScrollReveal';
+import Magnet from '../reactbits/Magnet';
 
 const CTASection = () => {
   return (
@@ -8,22 +9,23 @@ const CTASection = () => {
       
       <ScrollReveal>
         <div className="glass-panel mx-auto max-w-3xl rounded-2xl p-10 text-center sm:p-16">
-          <h2
-            id="cta-heading"
-            className="text-3xl font-bold text-brand-text sm:text-4xl"
-          >
-            Stop staring at stack traces.
+          <h2 id="cta-heading">
+            <ScrollReveal textClassName="text-3xl font-bold text-brand-text sm:text-4xl">
+              Stop staring at stack traces.
+            </ScrollReveal>
           </h2>
           <p className="mt-4 text-lg text-brand-muted">
             Turn errors into actionable fixes with DevPilot.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="#product"
-              className="rounded-lg bg-brand-accent px-8 py-3.5 text-sm font-semibold text-brand-bg transition-opacity hover:opacity-90"
-            >
-              Try DevPilot Now
-            </a>
+            <Magnet padding={30} magnetStrength={3}>
+              <a
+                href="#product"
+                className="block rounded-lg bg-brand-accent px-8 py-3.5 text-sm font-semibold text-brand-bg transition-opacity hover:opacity-90"
+              >
+                Try DevPilot Now
+              </a>
+            </Magnet>
             <a
               href="https://github.com/Prashant730/Acdyon-Project"
               target="_blank"

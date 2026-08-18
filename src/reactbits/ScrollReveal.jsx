@@ -1,55 +1,111 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import './ScrollReveal.css';
 
-/**
- * ScrollReveal — adapted from React Bits (reactbits.dev)
- * IntersectionObserver-based fade-in on scroll.
- * Customized: reduced animation distance, respects prefers-reduced-motion.
- */
+gsap.registerPlugin(ScrollTrigger);
+
 const ScrollReveal = ({
   children,
-  className = '',
-  threshold = 0.15,
-  delay = 0,
+  scrollContainerRef,
+  enableBlur = true,
+  baseOpacity = 0,
+  baseRotation = 0,
+  blurStrength = 4,
+  containerClassName = '',
+  textClassName = '',
+  rotationEnd = 'bottom bottom',
+  wordAnimationEnd = 'bottom bottom'
 }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef(null);
+  const containerRef = useRef(null);
+
+  const splitText = useMemo(() => {
+    const text = typeof children === 'string' ? children : '';
+    if (!text) return children; // Allow passing React nodes safely if not a string
+    
+    return text.split(/(\s+)/).map((word, index) => {
+      if (word.match(/^\s+$/)) return word;
+      return (
+        <span className="word" key={index}>
+          {word}
+        </span>
+      );
+    });
+  }, [children]);
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
+    const el = containerRef.current;
+    if (!el || typeof children !== 'string') return; // Only apply text split animations to strings
 
-    if (prefersReduced) {
-      setIsVisible(true);
-      return;
-    }
+    const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
+    gsap.fromTo(
+      el,
+      { transformOrigin: '0% 50%', rotate: baseRotation },
+      {
+        ease: 'none',
+        rotate: 0,
+        scrollTrigger: {
+          trigger: el,
+          scroller,
+          start: 'top bottom',
+          end: rotationEnd,
+          scrub: true
         }
-      },
-      { threshold }
+      }
     );
 
-    const el = ref.current;
-    if (el) observer.observe(el);
+    const wordElements = el.querySelectorAll('.word');
+
+    gsap.fromTo(
+      wordElements,
+      { opacity: baseOpacity, willChange: 'opacity' },
+      {
+        ease: 'none',
+        opacity: 1,
+        stagger: 0.05,
+        scrollTrigger: {
+          trigger: el,
+          scroller,
+          start: 'top bottom-=20%',
+          end: wordAnimationEnd,
+          scrub: true
+        }
+      }
+    );
+
+    if (enableBlur) {
+      gsap.fromTo(
+        wordElements,
+        { filter: `blur(${blurStrength}px)` },
+        {
+          ease: 'none',
+          filter: 'blur(0px)',
+          stagger: 0.05,
+          scrollTrigger: {
+            trigger: el,
+            scroller,
+            start: 'top bottom-=20%',
+            end: wordAnimationEnd,
+            scrub: true
+          }
+        }
+      );
+    }
 
     return () => {
-      if (el) observer.unobserve(el);
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, [threshold]);
+  }, [scrollContainerRef, enableBlur, baseRotation, baseOpacity, rotationEnd, wordAnimationEnd, blurStrength, children]);
+
+  if (typeof children !== 'string') {
+    return <div className={containerClassName}>{children}</div>; // Fallback for non-string children
+  }
 
   return (
-    <div
-      ref={ref}
-      className={`scroll-reveal ${isVisible ? 'scroll-reveal--visible' : ''} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
+    <div ref={containerRef} className={`scroll-reveal ${containerClassName}`}>
+      <div className={`scroll-reveal-text ${textClassName}`}>{splitText}</div>
     </div>
   );
 };
