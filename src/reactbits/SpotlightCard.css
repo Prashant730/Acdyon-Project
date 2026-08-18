@@ -1,0 +1,38 @@
+/* SpotlightCard — adapted from React Bits (reactbits.dev) */
+/* Customized: border color, background, and spotlight size for DevPilot theme */
+
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  cursor: default;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    600px circle at var(--spotlight-x, -100px) var(--spotlight-y, -100px),
+    var(--spotlight-color, rgba(25, 230, 140, 0.15)),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+.spotlight-card > * {
+  position: relative;
+  z-index: 2;
+}
