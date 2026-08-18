@@ -2,16 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== Design Tokens ===== */
+/* ===== Design Tokens (Black & White Theme) ===== */
 :root {
-  --bg-primary: #050807;
-  --bg-secondary: #0A110E;
-  --bg-card: #0E1713;
-  --border: #1A2A22;
-  --accent: #19E68C;
-  --accent-secondary: #14B8A6;
-  --text-primary: #F2F7F4;
-  --text-muted: #8A9A91;
+  --bg-primary: #000000;
+  --bg-secondary: #0A0A0A;
+  --bg-card: #121212;
+  --border: #27272A;
+  --accent: #FFFFFF;
+  --accent-secondary: #E4E4E7;
+  --text-primary: #FFFFFF;
+  --text-muted: #A1A1AA;
 }
 
 /* ===== Base Reset ===== */

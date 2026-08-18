@@ -4,9 +4,9 @@ const ErrorInput = ({ value, onChange, disabled }) => {
       {/* Editor header */}
       <div className="flex items-center gap-2 border-b border-brand-border px-4 py-2.5">
         <div className="flex gap-1.5" aria-hidden="true">
-          <span className="h-2.5 w-2.5 rounded-full bg-red-500/60" />
-          <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
-          <span className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
+          <span className="h-2.5 w-2.5 rounded-full bg-brand-border" />
+          <span className="h-2.5 w-2.5 rounded-full bg-brand-border" />
+          <span className="h-2.5 w-2.5 rounded-full bg-brand-border" />
         </div>
         <span className="text-xs text-brand-muted">input.js</span>
       </div>

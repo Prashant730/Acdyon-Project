@@ -1,12 +1,12 @@
 /* ShinyText — adapted from React Bits (reactbits.dev) */
-/* Customized: emerald/teal gradient to match DevPilot theme */
+/* Customized: monochrome grayscale gradient */
 
 .shiny-text {
   background: linear-gradient(
     120deg,
-    rgba(138, 154, 145, 1) 40%,
-    rgba(25, 230, 140, 1) 50%,
-    rgba(138, 154, 145, 1) 60%
+    rgba(161, 161, 170, 1) 40%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(161, 161, 170, 1) 60%
   );
   background-size: 200% 100%;
   -webkit-background-clip: text;

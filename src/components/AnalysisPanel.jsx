@@ -13,13 +13,13 @@ const AnalysisPanel = ({ result }) => {
       {/* Root Cause */}
       <div className="rounded-lg border border-brand-border bg-brand-bg p-4">
         <div className="mb-2 flex items-center gap-2">
-          <div className="flex h-6 w-6 items-center justify-center rounded bg-red-500/10">
+          <div className="flex h-6 w-6 items-center justify-center rounded bg-brand-border">
             <svg
               width="14"
               height="14"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="#ef4444"
+              stroke="#FFFFFF"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -29,7 +29,7 @@ const AnalysisPanel = ({ result }) => {
               <path d="M12 8v4M12 16h.01" />
             </svg>
           </div>
-          <h4 className="text-sm font-semibold text-red-400">Root Cause</h4>
+          <h4 className="text-sm font-semibold text-brand-text">Root Cause</h4>
         </div>
         <p className="text-sm font-medium text-brand-text">{result.rootCause}</p>
         <p className="mt-2 text-sm leading-relaxed text-brand-muted">
@@ -40,13 +40,13 @@ const AnalysisPanel = ({ result }) => {
       {/* Suggested Fix */}
       <div className="rounded-lg border border-brand-border bg-brand-bg p-4">
         <div className="mb-2 flex items-center gap-2">
-          <div className="flex h-6 w-6 items-center justify-center rounded bg-brand-accent/10">
+          <div className="flex h-6 w-6 items-center justify-center rounded bg-brand-border">
             <svg
               width="14"
               height="14"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="#19E68C"
+              stroke="#FFFFFF"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -55,7 +55,7 @@ const AnalysisPanel = ({ result }) => {
               <path d="M12 20V10M18 20V4M6 20v-4" />
             </svg>
           </div>
-          <h4 className="text-sm font-semibold text-brand-accent">Suggested Fix</h4>
+          <h4 className="text-sm font-semibold text-brand-text">Suggested Fix</h4>
         </div>
         <p className="text-sm leading-relaxed text-brand-muted">
           {result.suggestedFix}

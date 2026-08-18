@@ -11,10 +11,10 @@ const Footer = () => {
             fill="none"
             aria-hidden="true"
           >
-            <rect width="28" height="28" rx="6" fill="#19E68C" fillOpacity="0.15" />
+            <rect width="28" height="28" rx="6" fill="#FFFFFF" fillOpacity="0.10" />
             <path
               d="M8 14l4 4 8-8"
-              stroke="#19E68C"
+              stroke="#FFFFFF"
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
