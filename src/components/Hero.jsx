@@ -1,8 +1,11 @@
 import ShinyText from '../reactbits/ShinyText';
+import BlurText from '../reactbits/BlurText';
+import DotGrid from '../reactbits/DotGrid';
+import TiltedCard from '../reactbits/TiltedCard';
 
 const HeroMockUI = () => (
   <div
-    className="glass-panel relative w-full max-w-md overflow-hidden rounded-xl border border-brand-border-strong shadow-2xl transition-transform duration-700 hover:scale-[1.02]"
+    className="glass-panel relative w-full max-w-md overflow-hidden rounded-xl border border-brand-border-strong shadow-2xl"
     aria-hidden="true"
   >
     {/* Header */}
@@ -54,15 +57,19 @@ const HeroMockUI = () => (
 const Hero = () => {
   return (
     <section className="relative flex min-h-screen items-center px-6 pt-20 overflow-hidden">
-      {/* Background ambient glow */}
-      <div
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-        aria-hidden="true"
-      >
-        <div className="h-[500px] w-[800px] rounded-full bg-brand-accent/5 blur-[120px]" />
+      {/* Interactive DotGrid Background */}
+      <div className="absolute inset-0 z-0 opacity-40">
+        <DotGrid
+          dotSize={4}
+          gap={24}
+          baseColor="#09100c"
+          activeColor="#19E68C"
+          proximity={150}
+          shockRadius={300}
+        />
       </div>
 
-      <div className="mx-auto flex max-w-content flex-col items-center gap-12 lg:flex-row lg:gap-8">
+      <div className="mx-auto flex max-w-content flex-col items-center gap-12 lg:flex-row lg:gap-8 relative z-10">
         
         {/* Left Column: Copy */}
         <div className="flex flex-1 flex-col items-center text-center lg:items-start lg:text-left">
@@ -72,14 +79,27 @@ const Hero = () => {
             <ShinyText
               text="AI-Powered Developer Tool"
               className="text-xs font-medium tracking-wide uppercase"
+              color="#8A9A91"
+              shineColor="#19E68C"
             />
           </div>
 
-          {/* Headline */}
-          <h1 className="max-w-2xl text-4xl font-bold leading-tight tracking-tight text-brand-text sm:text-5xl lg:text-6xl">
-            Understand Code Faster.<br />
-            <span className="text-brand-accent">Debug Smarter.</span>
-          </h1>
+          {/* Headline with BlurText */}
+          <div className="max-w-2xl text-4xl font-bold leading-tight tracking-tight text-brand-text sm:text-5xl lg:text-6xl">
+            <BlurText
+              text="Understand Code Faster."
+              delay={100}
+              animateBy="words"
+              direction="bottom"
+            />
+            <BlurText
+              text="Debug Smarter."
+              delay={200}
+              animateBy="words"
+              direction="bottom"
+              className="text-brand-accent"
+            />
+          </div>
 
           {/* Subtext */}
           <p className="mt-6 max-w-lg text-base text-brand-muted sm:text-lg">
@@ -116,14 +136,17 @@ const Hero = () => {
         </div>
 
         {/* Right Column: Visual Product Preview */}
-        <div className="flex w-full flex-1 justify-center lg:justify-end [perspective:1000px]">
-          <div className="relative w-full max-w-md transition-transform duration-700 lg:[transform:rotateY(-10deg)_rotateX(5deg)] lg:hover:[transform:rotateY(-5deg)_rotateX(2deg)]">
-            <HeroMockUI />
-            
-            {/* Decorative floaters */}
-            <div className="absolute -right-6 -bottom-6 -z-10 h-32 w-32 rounded-full bg-brand-accent/20 blur-3xl" />
-            <div className="absolute -top-6 -left-6 -z-10 h-32 w-32 rounded-full bg-brand-accent-teal/20 blur-3xl" />
-          </div>
+        <div className="flex w-full flex-1 justify-center lg:justify-end">
+          <TiltedCard
+            containerWidth="100%"
+            containerHeight="400px"
+            rotateAmplitude={12}
+            scaleOnHover={1.05}
+          >
+            <div className="w-full flex justify-center lg:justify-end px-4">
+              <HeroMockUI />
+            </div>
+          </TiltedCard>
         </div>
       </div>
     </section>

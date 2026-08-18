@@ -4,6 +4,7 @@ import ErrorInput from './ErrorInput';
 import AnalysisPanel from './AnalysisPanel';
 import { defaultErrorInput, analysisResult } from '../data/mockData';
 import ScrollReveal from '../reactbits/ScrollReveal';
+import SpotlightCard from '../reactbits/SpotlightCard';
 
 const ProductShowcase = () => {
   const [input, setInput] = useState(defaultErrorInput);
@@ -48,7 +49,10 @@ const ProductShowcase = () => {
 
         <ScrollReveal delay={100}>
           {/* Main App Window */}
-          <div className="glass-panel mx-auto flex max-w-5xl flex-col overflow-hidden rounded-xl border border-brand-border-strong shadow-2xl">
+          <SpotlightCard
+            className="glass-panel mx-auto flex w-full max-w-5xl flex-col overflow-hidden rounded-xl border border-brand-border-strong shadow-2xl"
+            spotlightColor="rgba(25, 230, 140, 0.15)"
+          >
             
             {/* Window Header */}
             <div className="flex items-center justify-between border-b border-brand-border-strong bg-brand-surface/80 px-4 py-3">
@@ -167,7 +171,7 @@ const ProductShowcase = () => {
               </div>
               
             </div>
-          </div>
+          </SpotlightCard>
         </ScrollReveal>
       </div>
     </section>

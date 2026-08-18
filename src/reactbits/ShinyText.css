@@ -1,38 +1,3 @@
-/* ShinyText — adapted from React Bits (reactbits.dev) */
-/* Customized: Emerald/Teal gradient */
-
 .shiny-text {
-  background: linear-gradient(
-    120deg,
-    rgba(20, 184, 166, 1) 40%,
-    rgba(25, 230, 140, 1) 50%,
-    rgba(20, 184, 166, 1) 60%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shiny-slide 3s ease-in-out infinite;
-}
-
-.shiny-text--disabled {
-  animation: none;
-}
-
-@keyframes shiny-slide {
-  0% {
-    background-position: 100% 0;
-  }
-  100% {
-    background-position: -100% 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .shiny-text {
-    animation: none;
-    background: none;
-    -webkit-text-fill-color: var(--accent);
-    color: var(--accent);
-  }
+  display: inline-block;
 }
