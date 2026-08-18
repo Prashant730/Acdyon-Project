@@ -2,22 +2,25 @@ import ScrollReveal from '../reactbits/ScrollReveal';
 
 const CTASection = () => {
   return (
-    <section className="px-6 py-24" aria-labelledby="cta-heading">
+    <section className="px-6 py-24 relative overflow-hidden" aria-labelledby="cta-heading">
+      {/* Background depth glow */}
+      <div className="absolute left-1/2 top-1/2 -z-10 h-64 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-accent/10 blur-[100px]" aria-hidden="true" />
+      
       <ScrollReveal>
-        <div className="mx-auto max-w-2xl rounded-2xl border border-brand-border bg-brand-bg-secondary p-8 text-center sm:p-12">
+        <div className="glass-panel mx-auto max-w-3xl rounded-2xl p-10 text-center sm:p-16">
           <h2
             id="cta-heading"
-            className="text-2xl font-bold text-brand-text sm:text-3xl"
+            className="text-3xl font-bold text-brand-text sm:text-4xl"
           >
-            Ready to Debug Smarter?
+            Stop staring at stack traces.
           </h2>
-          <p className="mt-3 text-brand-muted">
-            Stop guessing. Start understanding your code.
+          <p className="mt-4 text-lg text-brand-muted">
+            Turn errors into actionable fixes with DevPilot.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
               href="#product"
-              className="rounded-lg bg-brand-accent px-6 py-3 text-sm font-semibold text-brand-bg transition-opacity hover:opacity-90"
+              className="rounded-lg bg-brand-accent px-8 py-3.5 text-sm font-semibold text-brand-bg transition-opacity hover:opacity-90"
             >
               Try DevPilot Now
             </a>
@@ -25,7 +28,7 @@ const CTASection = () => {
               href="https://github.com/Prashant730/Acdyon-Project"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg border border-brand-border px-6 py-3 text-sm font-medium text-brand-muted transition-colors hover:border-brand-muted hover:text-brand-text"
+              className="rounded-lg border border-brand-border-strong bg-brand-bg/50 px-8 py-3.5 text-sm font-medium text-brand-text transition-colors hover:border-brand-muted"
             >
               View Source Code
             </a>

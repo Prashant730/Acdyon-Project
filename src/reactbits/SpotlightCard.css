@@ -6,7 +6,7 @@
   overflow: hidden;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: var(--bg-card);
+  background: var(--bg-surface);
   cursor: default;
 }
 
@@ -19,7 +19,7 @@
   bottom: 0;
   background: radial-gradient(
     600px circle at var(--spotlight-x, -100px) var(--spotlight-y, -100px),
-    var(--spotlight-color, rgba(255, 255, 255, 0.08)),
+    var(--spotlight-color, rgba(25, 230, 140, 0.15)),
     transparent 40%
   );
   opacity: 0;

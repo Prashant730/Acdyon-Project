@@ -8,14 +8,16 @@ export default {
     extend: {
       colors: {
         brand: {
-          bg: '#000000',
-          'bg-secondary': '#0A0A0A',
-          card: '#121212',
-          border: '#27272A',
-          accent: '#FFFFFF',
-          'accent-secondary': '#E4E4E7',
+          bg: '#030504',
+          surface: '#070b09',
+          'surface-hover': '#0a110e',
+          card: '#09100c',
+          border: '#14221b',
+          'border-strong': '#1d3328',
+          accent: '#19E68C',
+          'accent-teal': '#14B8A6',
           text: '#FFFFFF',
-          muted: '#A1A1AA',
+          muted: '#8A9A91',
         },
       },
       fontFamily: {

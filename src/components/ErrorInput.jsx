@@ -1,30 +1,36 @@
 const ErrorInput = ({ value, onChange, disabled }) => {
   return (
-    <div className="rounded-lg border border-brand-border bg-brand-bg">
-      {/* Editor header */}
-      <div className="flex items-center gap-2 border-b border-brand-border px-4 py-2.5">
-        <div className="flex gap-1.5" aria-hidden="true">
-          <span className="h-2.5 w-2.5 rounded-full bg-brand-border" />
-          <span className="h-2.5 w-2.5 rounded-full bg-brand-border" />
-          <span className="h-2.5 w-2.5 rounded-full bg-brand-border" />
-        </div>
-        <span className="text-xs text-brand-muted">input.js</span>
+    <div className="flex h-full flex-col">
+      {/* Editor Header */}
+      <div className="flex items-center gap-2 border-b border-brand-border bg-brand-bg/50 px-4 py-2">
+        <span className="text-xs font-semibold tracking-wider text-brand-muted uppercase">
+          Input.js
+        </span>
       </div>
 
-      {/* Textarea */}
-      <label htmlFor="error-input" className="sr-only">
-        Paste your code or error message
-      </label>
-      <textarea
-        id="error-input"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        disabled={disabled}
-        rows={8}
-        spellCheck={false}
-        className="w-full resize-none bg-transparent p-4 font-mono text-sm leading-relaxed text-brand-text placeholder-brand-muted focus:outline-none disabled:opacity-50"
-        placeholder="Paste your code or error message here..."
-      />
+      {/* Editor Body */}
+      <div className="flex flex-1">
+        {/* Line Numbers */}
+        <div className="flex w-10 shrink-0 flex-col items-center border-r border-brand-border bg-brand-bg/30 py-4 text-xs text-brand-border-strong select-none">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <span key={i} className="leading-relaxed">{i + 1}</span>
+          ))}
+        </div>
+
+        {/* Textarea */}
+        <label htmlFor="error-input" className="sr-only">
+          Paste your code or error message
+        </label>
+        <textarea
+          id="error-input"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          disabled={disabled}
+          spellCheck={false}
+          className="flex-1 resize-none bg-transparent p-4 font-mono text-sm leading-relaxed text-brand-text placeholder-brand-muted focus:outline-none disabled:opacity-50"
+          placeholder="Paste your error message or broken code here..."
+        />
+      </div>
     </div>
   );
 };

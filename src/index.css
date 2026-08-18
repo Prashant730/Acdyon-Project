@@ -2,16 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== Design Tokens (Black & White Theme) ===== */
+/* ===== Design Tokens (Layered Emerald Theme) ===== */
 :root {
-  --bg-primary: #000000;
-  --bg-secondary: #0A0A0A;
-  --bg-card: #121212;
-  --border: #27272A;
-  --accent: #FFFFFF;
-  --accent-secondary: #E4E4E7;
+  --bg-primary: #030504;
+  --bg-surface: #070b09;
+  --bg-card: #09100c;
+  --border: #14221b;
+  --border-strong: #1d3328;
+  --accent: #19E68C;
+  --accent-teal: #14B8A6;
   --text-primary: #FFFFFF;
-  --text-muted: #A1A1AA;
+  --text-muted: #8A9A91;
 }
 
 /* ===== Base Reset ===== */
@@ -72,12 +73,20 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: var(--border-strong);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
+}
+
+/* ===== Utilities ===== */
+.glass-panel {
+  background: linear-gradient(145deg, rgba(7, 11, 9, 0.9) 0%, rgba(3, 5, 4, 0.95) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 /* ===== Reduced Motion ===== */
